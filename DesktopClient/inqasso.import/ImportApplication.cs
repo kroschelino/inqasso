@@ -1,39 +1,26 @@
-﻿using System.Diagnostics;
-using System;
-using System.Reflection;
-using ConsoLovers.ConsoleToolkit.Core;
-using ConsoLovers.ConsoleToolkit.Core.CommandLineArguments;
+﻿using Inqasso.Core;
+using Inqasso.Import.Interfaces;
 
 namespace Inqasso.Import
 {
-    internal class ImportApplication : ConsoleApplication<ImportArguments>
+    internal class ImportApplication : IImportService
     {
-        public ImportApplication(ICommandLineEngine commandLineEngine) : base(commandLineEngine)
+        private readonly Core.Core _inqassoCore; 
+        public ImportApplication(Core.Core inqassoCore)
         {
-
+            _inqassoCore = inqassoCore;
         }
 
-        public override void RunWith(ImportArguments arguments)
+        public void DisplayProducts()
         {
-            if (arguments.Version)
+            foreach (var product in _inqassoCore.GetProducts())
             {
-                var assembly = Assembly.GetExecutingAssembly();
-                var versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-                Console.WriteLine($"{versionInfo.ProductMajorPart}.{versionInfo.ProductMinorPart}.0");
+                Console.WriteLine($"Product: {product.Name} ({product.Flavor}); Typical sizes are {String.Join(",", product.TypicalSizes)}");
             }
         }
     }
 
-    internal class ImportArguments
-    {
-        [Option("Version", "v")]
-        [HelpText("Shows version information")]
-        public bool Version { get; set; }
 
-        [Command("Help", "h", "?")]
-        [HelpText("Displays the help you are watching at the moment.", "None")]
-        public HelpCommand Help { get; set; }
-    }
 }
 
 
