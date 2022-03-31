@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Inqasso.Core
+﻿namespace Inqasso.Core.Models
 {
-    public partial class OrderItem
+    internal partial class OrderItem
     {
         public int Id { get; set; }
         public int? OrderId { get; set; }

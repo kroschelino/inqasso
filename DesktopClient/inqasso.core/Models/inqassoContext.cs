@@ -1,37 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using Inqasso.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.IdentityModel.Tokens;
 
-namespace Inqasso.Core
+namespace Inqasso.Core.Models
 {
-    internal partial class inqassoContext : DbContext
+    internal class InqassoContext : DbContext
     {
-        public inqassoContext()
+        public InqassoContext()
         {
         }
 
-        public inqassoContext(DbContextOptions<inqassoContext> options)
+        public InqassoContext(DbContextOptions<InqassoContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Balance> Balances { get; set; } = null!;
-        public virtual DbSet<ExpectedEarning> ExpectedEarnings { get; set; } = null!;
-        public virtual DbSet<ExpectedIncome> ExpectedIncomes { get; set; } = null!;
-        public virtual DbSet<Invoice> Invoices { get; set; } = null!;
-        public virtual DbSet<InvoiceItem> InvoiceItems { get; set; } = null!;
-        public virtual DbSet<Member> Members { get; set; } = null!;
-        public virtual DbSet<Order> Orders { get; set; } = null!;
-        public virtual DbSet<OrderItem> OrderItems { get; set; } = null!;
-        public virtual DbSet<Overdue> Overdues { get; set; } = null!;
-        public virtual DbSet<PriceLevel> PriceLevels { get; set; } = null!;
-        public virtual DbSet<RealEarning> RealEarnings { get; set; } = null!;
-        public virtual DbSet<Revenue> Revenues { get; set; } = null!;
-        public virtual DbSet<TotalExpense> TotalExpenses { get; set; } = null!;
-        public virtual DbSet<TotalIncome> TotalIncomes { get; set; } = null!;
-        public virtual DbSet<Transaction> Transactions { get; set; } = null!;
+        internal virtual DbSet<Balance> Balances { get; set; } = null!;
+        internal virtual DbSet<ExpectedEarning> ExpectedEarnings { get; set; } = null!;
+        internal virtual DbSet<ExpectedIncome> ExpectedIncomes { get; set; } = null!;
+        internal virtual DbSet<Invoice> Invoices { get; set; } = null!;
+        internal virtual DbSet<InvoiceItem> InvoiceItems { get; set; } = null!;
+        internal virtual DbSet<Member> Members { get; set; } = null!;
+        internal virtual DbSet<Order> Orders { get; set; } = null!;
+        internal virtual DbSet<OrderItem> OrderItems { get; set; } = null!;
+        internal virtual DbSet<Overdue> Overdues { get; set; } = null!;
+        internal virtual DbSet<PriceLevel> PriceLevels { get; set; } = null!;
+        internal virtual DbSet<RealEarning> RealEarnings { get; set; } = null!;
+        internal virtual DbSet<Revenue> Revenues { get; set; } = null!;
+        internal virtual DbSet<TotalExpense> TotalExpenses { get; set; } = null!;
+        internal virtual DbSet<TotalIncome> TotalIncomes { get; set; } = null!;
+        internal virtual DbSet<Transaction> Transactions { get; set; } = null!;
+        internal virtual DbSet<Product> Products { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,6 +43,21 @@ namespace Inqasso.Core
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-NNKB45B\\SQLEXPRESS;Initial Catalog=inqasso;Integrated Security=true");
             }
+        }
+
+        private static List<int> Deserialize(string v)
+        {
+            List<int> result;
+            try
+            {
+                result = JsonSerializer.Deserialize<List<int>>(v, (JsonSerializerOptions)null!) ?? new List<int>() { 1 };
+            }
+            catch (JsonException)
+            {
+                result = new List<int>() { 1 };
+            }
+
+            return result;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -353,9 +371,30 @@ namespace Inqasso.Core
                     .HasConstraintName("FK_transactions_members1");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.ToTable("products");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Producer)
+                    .HasMaxLength(50)
+                    .HasColumnName("producer");
+
+                entity.Property(e => e.Name).HasMaxLength(50).HasColumnName("name");
+
+                entity.Property(e => e.Flavor)
+                    .HasMaxLength(50)
+                    .HasColumnName("flavor");
+
+                entity.Property(e => e.TypicalSizes)
+                    .HasConversion(
+                        v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null!),
+                        (v) => Deserialize(v)
+                    ).HasColumnName("typicalSizes");
+            });
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

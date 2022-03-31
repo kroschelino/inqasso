@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Inqasso.Core
+﻿namespace Inqasso.Core.Models
 {
-    public partial class Invoice
+    internal partial class Invoice
     {
         public Invoice()
         {

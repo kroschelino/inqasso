@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Inqasso.Core
+﻿namespace Inqasso.Core.Models
 {
     public partial class TotalIncome
     {

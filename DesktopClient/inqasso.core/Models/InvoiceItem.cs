@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Inqasso.Core.Models;
-
-namespace Inqasso.Core
+﻿namespace Inqasso.Core.Models
 {
     internal partial class InvoiceItem
     {
