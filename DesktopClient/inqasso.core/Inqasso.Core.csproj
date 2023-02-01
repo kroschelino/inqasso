@@ -8,11 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
-    <Folder Include="Internals\Interfaces\" />
+    <Compile Remove="Constants\**" />
+    <Compile Remove="Internals\**" />
+    <EmbeddedResource Remove="Constants\**" />
+    <EmbeddedResource Remove="Internals\**" />
+    <None Remove="Constants\**" />
+    <None Remove="Internals\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
       <PrivateAssets>all</PrivateAssets>

@@ -1,5 +1,5 @@
-﻿using Inqasso.Core.Interfaces;
-using Inqasso.Core.Models;
+﻿using Inqasso.Core.Context;
+using Inqasso.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
