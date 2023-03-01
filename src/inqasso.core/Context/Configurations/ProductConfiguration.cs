@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
 using Inqasso.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Inqasso.Core.Context.Configurations;
@@ -25,8 +25,8 @@ internal class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.Property(e => e.TypicalSizes)
             .HasConversion(
-                v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null!),
-                (v) => Deserialize(v)
+                v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
+                v => JsonSerializer.Deserialize<IEnumerable<int>>(v, (JsonSerializerOptions?)null)
             ).HasColumnName("typicalSizes");
     }
 }
