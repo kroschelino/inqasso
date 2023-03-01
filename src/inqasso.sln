@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "inqasso (Package)", "inqasso\inqasso (Package)\inqasso (Package).wapproj", "{0C159B5A-AAD5-4E0A-A7EA-54522D284946}"
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "Inqasso.App.Package", "Inqasso.App.Package\Inqasso.App.Package.wapproj", "{0C159B5A-AAD5-4E0A-A7EA-54522D284946}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inqasso.App", "inqasso\inqasso\Inqasso.App.csproj", "{837D86FC-4CFE-4334-879A-260036B2B358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inqasso.App", "Inqasso.App\Inqasso.App.csproj", "{837D86FC-4CFE-4334-879A-260036B2B358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inqasso.Data", "Inqasso.Data\Inqasso.Data.csproj", "{E550A412-4D1F-4A2C-8563-D48522548973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inqasso.Data", "Inqasso.Data\Inqasso.Data.csproj", "{E550A412-4D1F-4A2C-8563-D48522548973}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inqasso.Import", "inqasso.import\Inqasso.Import.csproj", "{013B16F1-DF50-4C99-AF6F-0306FF10E9F9}"
 EndProject
