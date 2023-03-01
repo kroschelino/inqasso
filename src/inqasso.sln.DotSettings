@@ -2,7 +2,6 @@
 	<s:Boolean x:Key="/Default/CodeStyle/CodeCleanup/CleanupOnSave/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeStyle/CodeCleanup/SilentCleanupProfile/@EntryValue">Built-in: Full Cleanup</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=180E83E933F3E74FB7E3FDC55A8F0D6A/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=180E83E933F3E74FB7E3FDC55A8F0D6A/AbsolutePath/@EntryValue">C:\Users\skroschel\inqasso\DesktopClient\inqasso.sln.DotSettings</s:String>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=180E83E933F3E74FB7E3FDC55A8F0D6A/RelativePath/@EntryValue"></s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File180E83E933F3E74FB7E3FDC55A8F0D6A/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File180E83E933F3E74FB7E3FDC55A8F0D6A/RelativePriority/@EntryValue">1</s:Double></wpf:ResourceDictionary>
